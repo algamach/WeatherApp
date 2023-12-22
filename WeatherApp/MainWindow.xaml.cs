@@ -18,12 +18,8 @@ using System.Windows.Shapes;
 
 namespace WeatherApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-
         //API ключ OpenWeatherMap
         private const string _KEY = "d27b83f5e1880dfe4cc0fc20525fddba";
         private const string _ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
