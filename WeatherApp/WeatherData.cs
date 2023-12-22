@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace WeatherApp
 {
+    // Классы для десериализации JSON-ответа от OpenWeatherMap
     public class WeatherData
     {
         public MainInfo Main { get; set; }
