@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <TextBox x:Name="CityTextBox" HorizontalAlignment="Left" Margin="53,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="GetWeatherButton" Content="Узнать погоду" HorizontalAlignment="Left" Margin="200,47,0,0" VerticalAlignment="Top" Width="100" Click="GetWeatherButton_Click"/>
+        <TextBlock x:Name="ResultTextBlock" HorizontalAlignment="Left" Margin="53,92,0,0" TextWrapping="Wrap" Text="Информация о погоде отсутствует" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
