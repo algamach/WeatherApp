@@ -5,8 +5,237 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeatherApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="400" Width="300"
+        Icon="Images/logo.png"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+    
+    
+    <Border CornerRadius="12">
 
-    </Grid>
+        <Border.Background>
+            <ImageBrush ImageSource="Images/back.jpg"
+                        Stretch="UniformToFill"/>
+        </Border.Background>
+
+        <Border CornerRadius="10"
+                BorderThickness="1"
+                Opacity="0.85">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#462AD8" Offset="0"/>
+                    <GradientStop Color="#DA34AE" Offset="0.75"/>
+                    <GradientStop Color="#8A16C1" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#060531" Offset="0"/>
+                    <GradientStop Color="#1B1448" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="5"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Погода"
+                               Foreground="DarkGray"
+                               FontSize="10"
+                               FontFamily="Montserrat"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Margin="10,0,0,0" />
+
+                    <Button x:Name="minimizeButton"                           
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="White"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="minimizeButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#28AEED"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#278BEF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                            CornerRadius="9"
+                            Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="closeButton"                          
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="closeButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#DA34AE"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#C62DAE"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                            CornerRadius="9"
+                            Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>                    
+                </Grid>
+                
+                <StackPanel Width="220"
+                            Grid.Row="1"
+                            Orientation="Vertical"
+                            Margin="0,35,0,15">
+
+                    <TextBlock x:Name="cityTextblock"
+                               Text=""
+                               Foreground="White"
+                               FontSize="16"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               HorizontalAlignment="Center"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,20,0,0">
+                        <TextBlock Text="Температура:"
+                                   Foreground="LightGray"
+                                   FontSize="13"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"/>
+                        <TextBlock x:Name="tempTextblock"
+                                   Text="-"
+                                   Foreground="LightGray"
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Margin="4,0,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,20,0,0">
+                        <TextBlock Text="Скорость ветра:"
+                                   Foreground="LightGray"
+                                   FontSize="13"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"/>
+                        <TextBlock x:Name="windTextblock"
+                                   Text="-"
+                                   Foreground="LightGray"
+                                   FontSize="14"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   Margin="4,0,0,0"/>
+                    </StackPanel>
+
+                                       
+                    <TextBlock x:Name="descriptionTextblock"
+                                Text="Описание: -"
+                                Foreground="LightGray"
+                                FontSize="13"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                Margin="0,20,0,0"
+                                TextWrapping="Wrap"/>
+                    
+                    <TextBlock Text="Введите название города:"
+                               Foreground="DarkGray"
+                               FontSize="13"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Margin="0,70,0,0"/>
+
+                    <TextBox x:Name="cityTextbox"
+                             FontSize="14"
+                             FontWeight="Medium"
+                             FontFamily="Montserrat"                            
+                             Foreground="White"
+                             CaretBrush="LightGray"
+                             BorderBrush="DarkGray"
+                             BorderThickness="0,0,0,2"
+                             Height="28"
+                             VerticalContentAlignment="Center"
+                             Margin="0,5,0,0"
+                             Background="Transparent">
+                    </TextBox>
+
+                    <Button x:Name="getWeatherButton"                          
+                            BorderThickness="0"
+                            Content="Узнать погоду"
+                            Foreground="White"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Margin="0,15,0,0"
+                            Click="getWeatherButton_Click">
+                        
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#462AD8"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#28AEED"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Height="40"
+                                        CornerRadius="20"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+
+        </Border>
+    </Border>
+
 </Window>
